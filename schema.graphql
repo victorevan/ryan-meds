@@ -1,5 +1,42 @@
 type Query {
-  currentTime: Date
+  providers: [MedicalProvider!]!
+  available_slots: [Slot!]!
+  currentTime: Date!
+}
+
+type Mutation {
+  book_slot(slot: Date!, medical_patient_id: ID!, medical_provider_id: ID!): MedicalBooking!
+  confirm_slot(slot: ID!): MedicalBooking
+}
+
+type MedicalProvider {
+  id: ID!
+  name: String!
+  available_slots: [Slot!]!
+}
+
+type Slot {
+  start_time: Date!
+}
+
+type MedicalPatient {
+  id: ID!
+}
+
+type MedicalBooking {
+  id: ID!
+  start_time: Int!
+  provider_id: ID!
+  patient_id: ID!
+  status: Status!
+}
+
+enum Status {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  EXPIRED
 }
 
 scalar Date

@@ -13,8 +13,61 @@ export type Scalars = {
   Date: any;
 };
 
+export type MedicalBooking = {
+  __typename?: 'MedicalBooking';
+  id: Scalars['ID'];
+  patient_id: Scalars['ID'];
+  provider_id: Scalars['ID'];
+  start_time: Scalars['Int'];
+  status: Status;
+};
+
+export type MedicalPatient = {
+  __typename?: 'MedicalPatient';
+  id: Scalars['ID'];
+};
+
+export type MedicalProvider = {
+  __typename?: 'MedicalProvider';
+  available_slots: Array<Slot>;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  book_slot: MedicalBooking;
+  confirm_slot?: Maybe<MedicalBooking>;
+};
+
+
+export type MutationBook_SlotArgs = {
+  medical_patient_id: Scalars['ID'];
+  medical_provider_id: Scalars['ID'];
+  slot: Scalars['Date'];
+};
+
+
+export type MutationConfirm_SlotArgs = {
+  slot: Scalars['ID'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  currentTime?: Maybe<Scalars['Date']>;
-  hello?: Maybe<Scalars['String']>;
+  available_slots: Array<Slot>;
+  currentTime: Scalars['Date'];
+  providers: Array<MedicalProvider>;
 };
+
+export type Slot = {
+  __typename?: 'Slot';
+  start_time: Scalars['Date'];
+};
+
+export enum Status {
+  Cancelled = 'CANCELLED',
+  Completed = 'COMPLETED',
+  Confirmed = 'CONFIRMED',
+  Expired = 'EXPIRED',
+  Pending = 'PENDING'
+}

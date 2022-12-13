@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,10 +15,64 @@ export type Scalars = {
   Date: any;
 };
 
+export type MedicalBooking = {
+  __typename?: 'MedicalBooking';
+  id: Scalars['ID'];
+  patient_id: Scalars['ID'];
+  provider_id: Scalars['ID'];
+  start_time: Scalars['Int'];
+  status: Status;
+};
+
+export type MedicalPatient = {
+  __typename?: 'MedicalPatient';
+  id: Scalars['ID'];
+};
+
+export type MedicalProvider = {
+  __typename?: 'MedicalProvider';
+  available_slots: Array<Slot>;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  book_slot: MedicalBooking;
+  confirm_slot?: Maybe<MedicalBooking>;
+};
+
+
+export type MutationBook_SlotArgs = {
+  medical_patient_id: Scalars['ID'];
+  medical_provider_id: Scalars['ID'];
+  slot: Scalars['Date'];
+};
+
+
+export type MutationConfirm_SlotArgs = {
+  slot: Scalars['ID'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  currentTime?: Maybe<Scalars['Date']>;
+  available_slots: Array<Slot>;
+  currentTime: Scalars['Date'];
+  providers: Array<MedicalProvider>;
 };
+
+export type Slot = {
+  __typename?: 'Slot';
+  start_time: Scalars['Date'];
+};
+
+export enum Status {
+  Cancelled = 'CANCELLED',
+  Completed = 'COMPLETED',
+  Confirmed = 'CONFIRMED',
+  Expired = 'EXPIRED',
+  Pending = 'PENDING'
+}
 
 
 
@@ -90,7 +145,15 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Date: ResolverTypeWrapper<Scalars['Date']>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  MedicalBooking: ResolverTypeWrapper<MedicalBooking>;
+  MedicalPatient: ResolverTypeWrapper<MedicalPatient>;
+  MedicalProvider: ResolverTypeWrapper<MedicalProvider>;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Slot: ResolverTypeWrapper<Slot>;
+  Status: Status;
   String: ResolverTypeWrapper<Scalars['String']>;
 };
 
@@ -98,7 +161,14 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Date: Scalars['Date'];
+  ID: Scalars['ID'];
+  Int: Scalars['Int'];
+  MedicalBooking: MedicalBooking;
+  MedicalPatient: MedicalPatient;
+  MedicalProvider: MedicalProvider;
+  Mutation: {};
   Query: {};
+  Slot: Slot;
   String: Scalars['String'];
 };
 
@@ -106,12 +176,50 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'Date';
 }
 
+export type MedicalBookingResolvers<ContextType = any, ParentType extends ResolversParentTypes['MedicalBooking'] = ResolversParentTypes['MedicalBooking']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  patient_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  provider_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  start_time?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['Status'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MedicalPatientResolvers<ContextType = any, ParentType extends ResolversParentTypes['MedicalPatient'] = ResolversParentTypes['MedicalPatient']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MedicalProviderResolvers<ContextType = any, ParentType extends ResolversParentTypes['MedicalProvider'] = ResolversParentTypes['MedicalProvider']> = {
+  available_slots?: Resolver<Array<ResolversTypes['Slot']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  book_slot?: Resolver<ResolversTypes['MedicalBooking'], ParentType, ContextType, RequireFields<MutationBook_SlotArgs, 'medical_patient_id' | 'medical_provider_id' | 'slot'>>;
+  confirm_slot?: Resolver<Maybe<ResolversTypes['MedicalBooking']>, ParentType, ContextType, RequireFields<MutationConfirm_SlotArgs, 'slot'>>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  currentTime?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  available_slots?: Resolver<Array<ResolversTypes['Slot']>, ParentType, ContextType>;
+  currentTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  providers?: Resolver<Array<ResolversTypes['MedicalProvider']>, ParentType, ContextType>;
+};
+
+export type SlotResolvers<ContextType = any, ParentType extends ResolversParentTypes['Slot'] = ResolversParentTypes['Slot']> = {
+  start_time?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
   Date?: GraphQLScalarType;
+  MedicalBooking?: MedicalBookingResolvers<ContextType>;
+  MedicalPatient?: MedicalPatientResolvers<ContextType>;
+  MedicalProvider?: MedicalProviderResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Slot?: SlotResolvers<ContextType>;
 };
 
