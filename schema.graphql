@@ -1,7 +1,7 @@
 type Query {
   providers: [MedicalProvider!]!
   available_slots: [SlotWithProvider!]!
-  currentTime: Date!
+  current_time: Date!
 }
 
 type Mutation {

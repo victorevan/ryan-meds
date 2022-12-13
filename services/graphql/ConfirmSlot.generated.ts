@@ -2,18 +2,18 @@ import * as Types from './generated';
 
 import { api } from 'services/baseApi';
 export type ConfirmSlotMutationVariables = Types.Exact<{
-  booking_id: Types.Scalars['ID'];
+  bookingId: Types.Scalars['ID'];
 }>;
 
 
-export type ConfirmSlotMutation = { __typename?: 'Mutation', confirm_slot?: { __typename?: 'MedicalBooking', id: string, start_time: number, status: Types.Status } | null };
+export type ConfirmSlotMutation = { __typename?: 'Mutation', confirmSlot?: { __typename?: 'MedicalBooking', id: string, status: Types.Status, startTime: number } | null };
 
 
 export const ConfirmSlotDocument = `
-    mutation ConfirmSlot($booking_id: ID!) {
-  confirm_slot(booking_id: $booking_id) {
+    mutation ConfirmSlot($bookingId: ID!) {
+  confirmSlot: confirm_slot(booking_id: $bookingId) {
     id
-    start_time
+    startTime: start_time
     status
   }
 }

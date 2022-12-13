@@ -1,6 +1,11 @@
+# Preference would be this query already returns available slots 24 hours ahead
+# of time, but if not, we can use the following commented out filters on Hasura
+# query GetAvailableSlots( $from: Date ) {
+# availableSlots: available_slots(where: { start_time: { _gt: $from } }) {
+
 query GetAvailableSlots {
-  available_slots {
-    start_time
-    provider_id
+  availableSlots: available_slots {
+    startTime: start_time
+    providerId: provider_id
   }
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { MedicalBooking, Status } from "services/graphql/generated";
 import { useConfirmSlotMutation } from "services/graphql/ConfirmSlot.generated";
-import { Button } from "./Button";
-import { NavLink } from "./NavLink";
+import { Button } from "../Shared/Button";
+import { NavLink } from "../Shared/NavLink";
 
 type Props = {
   bookingId: MedicalBooking["id"];
@@ -16,14 +16,14 @@ type Props = {
  */
 function MedicalPatientBookAppointment({ bookingId, expiresAt }: Props) {
   const [confirmed, setConfirmed] = useState(false);
-  const [confirmSlot, result] = useConfirmSlotMutation();
+  const [confirmSlot] = useConfirmSlotMutation();
 
-  const handleConfirm = () => {
-    confirmSlot({
-      booking_id: bookingId,
-    });
+  const handleConfirm = async () => {
+    const result = await confirmSlot({
+      bookingId,
+    }).unwrap();
 
-    if (result.data?.confirm_slot?.status !== Status.Confirmed) {
+    if (result?.confirmSlot?.status !== Status.Confirmed) {
       /**
        * handle error here
        */
@@ -37,7 +37,7 @@ function MedicalPatientBookAppointment({ bookingId, expiresAt }: Props) {
   if (confirmed) {
     return (
       <div>
-        <div class="pb-2">Thank you! You&apos;re succesfully booked!</div>
+        <div className="pb-2">Thank you! You&apos;re succesfully booked!</div>
         <div>
           <NavLink isA={false} href="/">
             Go Home

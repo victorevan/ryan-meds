@@ -4,14 +4,14 @@ import { api } from 'services/baseApi';
 export type GetAvailableSlotsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetAvailableSlotsQuery = { __typename?: 'Query', available_slots: Array<{ __typename?: 'SlotWithProvider', start_time: any, provider_id: string }> };
+export type GetAvailableSlotsQuery = { __typename?: 'Query', availableSlots: Array<{ __typename?: 'SlotWithProvider', startTime: any, providerId: string }> };
 
 
 export const GetAvailableSlotsDocument = `
     query GetAvailableSlots {
-  available_slots {
-    start_time
-    provider_id
+  availableSlots: available_slots {
+    startTime: start_time
+    providerId: provider_id
   }
 }
     `;

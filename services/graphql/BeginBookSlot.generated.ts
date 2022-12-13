@@ -3,26 +3,26 @@ import * as Types from './generated';
 import { api } from 'services/baseApi';
 export type BeginBookSlotMutationVariables = Types.Exact<{
   slot: Types.Scalars['Date'];
-  medical_patient_id: Types.Scalars['ID'];
-  medical_provider_id: Types.Scalars['ID'];
+  medicalPatientId: Types.Scalars['ID'];
+  medicalProviderId: Types.Scalars['ID'];
 }>;
 
 
-export type BeginBookSlotMutation = { __typename?: 'Mutation', begin_book_slot: { __typename?: 'MedicalBooking', id: string, start_time: number, provider_id: string, patient_id: string, expires_at?: any | null, status: Types.Status } };
+export type BeginBookSlotMutation = { __typename?: 'Mutation', beginBookSlot: { __typename?: 'MedicalBooking', id: string, status: Types.Status, startTime: number, providerId: string, patientId: string, expiresAt?: any | null } };
 
 
 export const BeginBookSlotDocument = `
-    mutation BeginBookSlot($slot: Date!, $medical_patient_id: ID!, $medical_provider_id: ID!) {
-  begin_book_slot(
+    mutation BeginBookSlot($slot: Date!, $medicalPatientId: ID!, $medicalProviderId: ID!) {
+  beginBookSlot: begin_book_slot(
     slot: $slot
-    medical_patient_id: $medical_patient_id
-    medical_provider_id: $medical_provider_id
+    medical_patient_id: $medicalPatientId
+    medical_provider_id: $medicalProviderId
   ) {
     id
-    start_time
-    provider_id
-    patient_id
-    expires_at
+    startTime: start_time
+    providerId: provider_id
+    patientId: patient_id
+    expiresAt: expires_at
     status
   }
 }

@@ -1,16 +1,12 @@
-import Head from "next/head";
 import Link from "next/link";
-import MedicalProviderFlow from "@components/MedicalProviderFlow";
+import MedicalProviderFlow from "@components/MedicalProviderFlow/MedicalProviderFlow";
 
-import { AuthLayout } from "@components/AuthLayout";
-import { Logo } from "@components/Logo";
+import { AuthLayout } from "@components/Shared/AuthLayout";
+import { Logo } from "@components/Shared/Logo";
 
 export default function Login() {
   return (
     <>
-      <Head>
-        <title>Medical Provider Flow</title>
-      </Head>
       <AuthLayout>
         <div className="flex flex-col">
           <Link href="/" aria-label="Home">

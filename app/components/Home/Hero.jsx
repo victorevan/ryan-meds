@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import { Button } from '@components/Button'
-import { Container } from '@components/Container'
+import { Button } from '@components/Shared/Button'
+import { Container } from '@components/Home/Container'
 import logoLaravel from '@images/logos/laravel.svg'
 import logoMirage from '@images/logos/mirage.svg'
 import logoStatamic from '@images/logos/statamic.svg'

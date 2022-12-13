@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import { Container } from '@components/Container'
-import { Logo } from '@components/Logo'
-import { NavLink } from '@components/NavLink'
+import { Container } from '@components/Home/Container'
+import { Logo } from '@components/Shared/Logo'
+import { NavLink } from '@components/Shared/NavLink'
 
 export function Footer() {
   return (

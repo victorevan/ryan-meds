@@ -97,7 +97,7 @@ const fakeAvailableSlots = fakeProviders.reduce(
 const resolvers: Resolvers = {
   Date: dateScalar,
   Query: {
-    currentTime: () => Date.now(),
+    current_time: () => Date.now(),
   },
 };
 

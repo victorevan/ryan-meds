@@ -1,7 +1,7 @@
-mutation ConfirmSlot($booking_id: ID!) {
-  confirm_slot(booking_id: $booking_id) {
+mutation ConfirmSlot($bookingId: ID!) {
+  confirmSlot: confirm_slot(booking_id: $bookingId) {
     id
-    start_time
+    startTime: start_time
     status
   }
 }

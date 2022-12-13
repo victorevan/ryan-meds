@@ -1,5 +1,5 @@
 "use client";
-import MedicalProvidersList from "@components/MedicalProvidersList";
+import MedicalProvidersList from "@components/MedicalProviderFlow/MedicalProvidersList";
 import MedicalProviderUpdateAvailabilities from "./MedicalProviderUpdateAvailabilities";
 import { MedicalProvider } from "services/graphql/generated";
 import { useState } from "react";

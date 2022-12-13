@@ -17,13 +17,13 @@ export default function AvailableSlotsList({ onSlotSelect }: Props) {
       <h1>Available Slots List</h1>
 
       <ul>
-        {data?.available_slots.map((slot) => (
+        {data?.availableSlots.map((slot) => (
           <li
-            key={slot.start_time}
+            key={slot.startTime}
             className="cursor-pointer py-2 mb-4"
-            onClick={() => onSlotSelect(slot.start_time, slot.provider_id)}
+            onClick={() => onSlotSelect(slot.startTime, slot.providerId)}
           >
-            {slot.start_time} - {slot.provider_id}
+            {slot.startTime} - {slot.providerId}
           </li>
         ))}
       </ul>

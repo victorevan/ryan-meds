@@ -9,7 +9,7 @@ export type GetCurrentTimeQuery = { __typename?: 'Query', currentTime: any };
 
 export const GetCurrentTimeDocument = `
     query GetCurrentTime {
-  currentTime
+  currentTime: current_time
 }
     `;
 

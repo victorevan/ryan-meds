@@ -64,7 +64,7 @@ export type MutationConfirm_SlotArgs = {
 export type Query = {
   __typename?: 'Query';
   available_slots: Array<SlotWithProvider>;
-  currentTime: Scalars['Date'];
+  current_time: Scalars['Date'];
   providers: Array<MedicalProvider>;
 };
 

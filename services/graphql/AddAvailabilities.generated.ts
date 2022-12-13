@@ -2,25 +2,25 @@ import * as Types from './generated';
 
 import { api } from 'services/baseApi';
 export type AddAvailabilitiesMutationVariables = Types.Exact<{
-  medical_provider_id: Types.Scalars['ID'];
-  start_time: Types.Scalars['Date'];
-  end_time: Types.Scalars['Date'];
+  medicalProviderId: Types.Scalars['ID'];
+  startTime: Types.Scalars['Date'];
+  endTime: Types.Scalars['Date'];
 }>;
 
 
-export type AddAvailabilitiesMutation = { __typename?: 'Mutation', add_availabilities?: { __typename?: 'MedicalProvider', id: string, available_slots: Array<{ __typename?: 'Slot', start_time: any }> } | null };
+export type AddAvailabilitiesMutation = { __typename?: 'Mutation', addAvailabilities?: { __typename?: 'MedicalProvider', id: string, availableSlots: Array<{ __typename?: 'Slot', startTime: any }> } | null };
 
 
 export const AddAvailabilitiesDocument = `
-    mutation AddAvailabilities($medical_provider_id: ID!, $start_time: Date!, $end_time: Date!) {
-  add_availabilities(
-    medical_provider_id: $medical_provider_id
-    start_time: $start_time
-    end_time: $end_time
+    mutation AddAvailabilities($medicalProviderId: ID!, $startTime: Date!, $endTime: Date!) {
+  addAvailabilities: add_availabilities(
+    medical_provider_id: $medicalProviderId
+    start_time: $startTime
+    end_time: $endTime
   ) {
     id
-    available_slots {
-      start_time
+    availableSlots: available_slots {
+      startTime: start_time
     }
   }
 }

@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { Button } from '@components/Button'
-import { Container } from '@components/Container'
-import { Logo } from '@components/Logo'
-import { NavLink, RegularLink } from '@components/NavLink'
+import { Button } from '@components/Shared/Button'
+import { Container } from '@components/Home/Container'
+import { Logo } from '@components/Shared/Logo'
+import { NavLink, RegularLink } from '@components/Shared/NavLink'
 
 
 function MobileNavLink({ isA, href, children }) {

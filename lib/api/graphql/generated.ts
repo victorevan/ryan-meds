@@ -66,7 +66,7 @@ export type MutationConfirm_SlotArgs = {
 export type Query = {
   __typename?: 'Query';
   available_slots: Array<SlotWithProvider>;
-  currentTime: Scalars['Date'];
+  current_time: Scalars['Date'];
   providers: Array<MedicalProvider>;
 };
 
@@ -223,7 +223,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   available_slots?: Resolver<Array<ResolversTypes['SlotWithProvider']>, ParentType, ContextType>;
-  currentTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  current_time?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   providers?: Resolver<Array<ResolversTypes['MedicalProvider']>, ParentType, ContextType>;
 };
 

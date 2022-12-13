@@ -29,7 +29,7 @@ export default function MedicalProviderUpdateAvailabilities({
   const [updateAvailabilities] = useAddAvailabilitiesMutation();
   const { data, isLoading } = useGetCurrentTimeQuery();
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (
@@ -57,11 +57,20 @@ export default function MedicalProviderUpdateAvailabilities({
       new Date(year, month, day, endHour, endMinutes)
     );
 
-    updateAvailabilities({
-      medical_provider_id: providerId,
-      start_time: startTime,
-      end_time: endTime,
-    });
+    const result = await updateAvailabilities({
+      medicalProviderId: providerId,
+      startTime: startTime,
+      endTime: endTime,
+    }).unwrap();
+
+    if (result?.addAvailabilities) {
+      // handle success here
+      // ask user to submit another availability if they'd like
+      console.log("Availabilities updated successfully");
+    } else {
+      // handle error here
+      console.error("Unable to update availabilities");
+    }
   };
 
   if (isLoading) return <div>Loading Form...</div>;
