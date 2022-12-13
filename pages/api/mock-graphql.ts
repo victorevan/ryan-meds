@@ -102,10 +102,20 @@ const resolvers: Resolvers = {
 };
 
 const mocks = {
-  Date: () => faker.date.future().getTime(),
+  Date: () => 1691938800,
   Query: {
     providers: () => fakeProviders,
     available_slots: () => fakeAvailableSlots,
+  },
+  Mutation: {
+    confirm_slot: () => ({
+      id: faker.datatype.uuid(),
+      start_time: 1691938800,
+      provider_id: faker.datatype.uuid(),
+      patient_id: faker.datatype.uuid(),
+      expires_at: 1691938800,
+      status: "CONFIRMED",
+    }),
   },
 };
 

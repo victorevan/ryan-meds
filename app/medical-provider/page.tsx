@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Sign In - TaxPal</title>
+        <title>Medical Provider Flow</title>
       </Head>
       <AuthLayout>
         <div className="flex flex-col">
@@ -18,7 +18,7 @@ export default function Login() {
           </Link>
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
-              Doctor Unauthenticated Sign In
+              Doctor Portal
             </h2>
           </div>
         </div>

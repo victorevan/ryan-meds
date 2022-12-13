@@ -17,6 +17,7 @@ export type Scalars = {
 
 export type MedicalBooking = {
   __typename?: 'MedicalBooking';
+  expires_at?: Maybe<Scalars['Date']>;
   id: Scalars['ID'];
   patient_id: Scalars['ID'];
   provider_id: Scalars['ID'];
@@ -39,7 +40,7 @@ export type MedicalProvider = {
 export type Mutation = {
   __typename?: 'Mutation';
   add_availabilities?: Maybe<MedicalProvider>;
-  book_slot: MedicalBooking;
+  begin_book_slot: MedicalBooking;
   confirm_slot?: Maybe<MedicalBooking>;
 };
 
@@ -51,7 +52,7 @@ export type MutationAdd_AvailabilitiesArgs = {
 };
 
 
-export type MutationBook_SlotArgs = {
+export type MutationBegin_Book_SlotArgs = {
   medical_patient_id: Scalars['ID'];
   medical_provider_id: Scalars['ID'];
   slot: Scalars['Date'];
@@ -59,7 +60,7 @@ export type MutationBook_SlotArgs = {
 
 
 export type MutationConfirm_SlotArgs = {
-  slot: Scalars['ID'];
+  booking_id: Scalars['ID'];
 };
 
 export type Query = {
@@ -193,6 +194,7 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type MedicalBookingResolvers<ContextType = any, ParentType extends ResolversParentTypes['MedicalBooking'] = ResolversParentTypes['MedicalBooking']> = {
+  expires_at?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   patient_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   provider_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -215,8 +217,8 @@ export type MedicalProviderResolvers<ContextType = any, ParentType extends Resol
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   add_availabilities?: Resolver<Maybe<ResolversTypes['MedicalProvider']>, ParentType, ContextType, RequireFields<MutationAdd_AvailabilitiesArgs, 'end_time' | 'medical_provider_id' | 'start_time'>>;
-  book_slot?: Resolver<ResolversTypes['MedicalBooking'], ParentType, ContextType, RequireFields<MutationBook_SlotArgs, 'medical_patient_id' | 'medical_provider_id' | 'slot'>>;
-  confirm_slot?: Resolver<Maybe<ResolversTypes['MedicalBooking']>, ParentType, ContextType, RequireFields<MutationConfirm_SlotArgs, 'slot'>>;
+  begin_book_slot?: Resolver<ResolversTypes['MedicalBooking'], ParentType, ContextType, RequireFields<MutationBegin_Book_SlotArgs, 'medical_patient_id' | 'medical_provider_id' | 'slot'>>;
+  confirm_slot?: Resolver<Maybe<ResolversTypes['MedicalBooking']>, ParentType, ContextType, RequireFields<MutationConfirm_SlotArgs, 'booking_id'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

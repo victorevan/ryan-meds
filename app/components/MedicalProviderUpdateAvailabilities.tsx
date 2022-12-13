@@ -26,8 +26,7 @@ export default function MedicalProviderUpdateAvailabilities({
     endTime: null as null | Date,
   });
 
-  const [updateAvailabilities, { isLoading: isUpdating }] =
-    useAddAvailabilitiesMutation();
+  const [updateAvailabilities] = useAddAvailabilitiesMutation();
   const { data, isLoading } = useGetCurrentTimeQuery();
 
   const handleFormSubmit = (e: FormEvent) => {

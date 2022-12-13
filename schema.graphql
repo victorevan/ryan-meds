@@ -6,8 +6,8 @@ type Query {
 
 type Mutation {
   add_availabilities(medical_provider_id: ID!, start_time: Date!, end_time: Date!): MedicalProvider
-  book_slot(slot: Date!, medical_patient_id: ID!, medical_provider_id: ID!): MedicalBooking!
-  confirm_slot(slot: ID!): MedicalBooking
+  begin_book_slot(slot: Date!, medical_patient_id: ID!, medical_provider_id: ID!): MedicalBooking!
+  confirm_slot(booking_id: ID!): MedicalBooking
 }
 
 type MedicalProvider {
@@ -34,6 +34,7 @@ type MedicalBooking {
   start_time: Int!
   provider_id: ID!
   patient_id: ID!
+  expires_at: Date
   status: Status!
 }
 

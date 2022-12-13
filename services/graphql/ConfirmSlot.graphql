@@ -1,0 +1,7 @@
+mutation ConfirmSlot($booking_id: ID!) {
+  confirm_slot(booking_id: $booking_id) {
+    id
+    start_time
+    status
+  }
+}

@@ -15,6 +15,7 @@ export type Scalars = {
 
 export type MedicalBooking = {
   __typename?: 'MedicalBooking';
+  expires_at?: Maybe<Scalars['Date']>;
   id: Scalars['ID'];
   patient_id: Scalars['ID'];
   provider_id: Scalars['ID'];
@@ -37,7 +38,7 @@ export type MedicalProvider = {
 export type Mutation = {
   __typename?: 'Mutation';
   add_availabilities?: Maybe<MedicalProvider>;
-  book_slot: MedicalBooking;
+  begin_book_slot: MedicalBooking;
   confirm_slot?: Maybe<MedicalBooking>;
 };
 
@@ -49,7 +50,7 @@ export type MutationAdd_AvailabilitiesArgs = {
 };
 
 
-export type MutationBook_SlotArgs = {
+export type MutationBegin_Book_SlotArgs = {
   medical_patient_id: Scalars['ID'];
   medical_provider_id: Scalars['ID'];
   slot: Scalars['Date'];
@@ -57,7 +58,7 @@ export type MutationBook_SlotArgs = {
 
 
 export type MutationConfirm_SlotArgs = {
-  slot: Scalars['ID'];
+  booking_id: Scalars['ID'];
 };
 
 export type Query = {
