@@ -4,13 +4,14 @@ import { api } from 'services/baseApi';
 export type GetProvidersQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetProvidersQuery = { __typename?: 'Query', providers: Array<{ __typename?: 'MedicalProvider', id: string }> };
+export type GetProvidersQuery = { __typename?: 'Query', providers: Array<{ __typename?: 'MedicalProvider', id: string, name: string }> };
 
 
 export const GetProvidersDocument = `
     query GetProviders {
   providers {
     id
+    name
   }
 }
     `;

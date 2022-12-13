@@ -18,18 +18,8 @@ export default function Login() {
           </Link>
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
-              Sign in to your account
+              Doctor Unauthenticated Sign In
             </h2>
-            <p className="mt-2 text-sm text-gray-700">
-              Don’t have an account?{" "}
-              <Link
-                href="/register"
-                className="font-medium text-blue-600 hover:underline"
-              >
-                Sign up
-              </Link>{" "}
-              for a free trial.
-            </p>
           </div>
         </div>
         <div>
