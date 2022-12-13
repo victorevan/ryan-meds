@@ -36,8 +36,16 @@ export type MedicalProvider = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  add_availabilities?: Maybe<MedicalProvider>;
   book_slot: MedicalBooking;
   confirm_slot?: Maybe<MedicalBooking>;
+};
+
+
+export type MutationAdd_AvailabilitiesArgs = {
+  end_time: Scalars['Date'];
+  medical_provider_id: Scalars['ID'];
+  start_time: Scalars['Date'];
 };
 
 
@@ -54,13 +62,19 @@ export type MutationConfirm_SlotArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  available_slots: Array<Slot>;
+  available_slots: Array<SlotWithProvider>;
   currentTime: Scalars['Date'];
   providers: Array<MedicalProvider>;
 };
 
 export type Slot = {
   __typename?: 'Slot';
+  start_time: Scalars['Date'];
+};
+
+export type SlotWithProvider = {
+  __typename?: 'SlotWithProvider';
+  provider_id: Scalars['ID'];
   start_time: Scalars['Date'];
 };
 

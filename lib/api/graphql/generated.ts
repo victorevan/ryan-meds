@@ -38,8 +38,16 @@ export type MedicalProvider = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  add_availabilities?: Maybe<MedicalProvider>;
   book_slot: MedicalBooking;
   confirm_slot?: Maybe<MedicalBooking>;
+};
+
+
+export type MutationAdd_AvailabilitiesArgs = {
+  end_time: Scalars['Date'];
+  medical_provider_id: Scalars['ID'];
+  start_time: Scalars['Date'];
 };
 
 
@@ -56,13 +64,19 @@ export type MutationConfirm_SlotArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  available_slots: Array<Slot>;
+  available_slots: Array<SlotWithProvider>;
   currentTime: Scalars['Date'];
   providers: Array<MedicalProvider>;
 };
 
 export type Slot = {
   __typename?: 'Slot';
+  start_time: Scalars['Date'];
+};
+
+export type SlotWithProvider = {
+  __typename?: 'SlotWithProvider';
+  provider_id: Scalars['ID'];
   start_time: Scalars['Date'];
 };
 
@@ -153,6 +167,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Slot: ResolverTypeWrapper<Slot>;
+  SlotWithProvider: ResolverTypeWrapper<SlotWithProvider>;
   Status: Status;
   String: ResolverTypeWrapper<Scalars['String']>;
 };
@@ -169,6 +184,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   Query: {};
   Slot: Slot;
+  SlotWithProvider: SlotWithProvider;
   String: Scalars['String'];
 };
 
@@ -198,17 +214,24 @@ export type MedicalProviderResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  add_availabilities?: Resolver<Maybe<ResolversTypes['MedicalProvider']>, ParentType, ContextType, RequireFields<MutationAdd_AvailabilitiesArgs, 'end_time' | 'medical_provider_id' | 'start_time'>>;
   book_slot?: Resolver<ResolversTypes['MedicalBooking'], ParentType, ContextType, RequireFields<MutationBook_SlotArgs, 'medical_patient_id' | 'medical_provider_id' | 'slot'>>;
   confirm_slot?: Resolver<Maybe<ResolversTypes['MedicalBooking']>, ParentType, ContextType, RequireFields<MutationConfirm_SlotArgs, 'slot'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  available_slots?: Resolver<Array<ResolversTypes['Slot']>, ParentType, ContextType>;
+  available_slots?: Resolver<Array<ResolversTypes['SlotWithProvider']>, ParentType, ContextType>;
   currentTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   providers?: Resolver<Array<ResolversTypes['MedicalProvider']>, ParentType, ContextType>;
 };
 
 export type SlotResolvers<ContextType = any, ParentType extends ResolversParentTypes['Slot'] = ResolversParentTypes['Slot']> = {
+  start_time?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SlotWithProviderResolvers<ContextType = any, ParentType extends ResolversParentTypes['SlotWithProvider'] = ResolversParentTypes['SlotWithProvider']> = {
+  provider_id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   start_time?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -221,5 +244,6 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Slot?: SlotResolvers<ContextType>;
+  SlotWithProvider?: SlotWithProviderResolvers<ContextType>;
 };
 

@@ -1,9 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
+import ProvidersList from "@components/ProvidersList";
 
 import { AuthLayout } from "@components/AuthLayout";
-import { Button } from "@components/Button";
-import { TextField } from "@components/Fields";
 import { Logo } from "@components/Logo";
 
 export default function Login() {
@@ -33,36 +32,9 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <form action="#" className="mt-10 grid grid-cols-1 gap-y-8">
-          <TextField
-            label="Email address"
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-          <TextField
-            label="Password"
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-          />
-          <div>
-            <Button
-              type="submit"
-              variant="solid"
-              color="blue"
-              className="w-full"
-            >
-              <span>
-                Sign in <span aria-hidden="true">&rarr;</span>
-              </span>
-            </Button>
-          </div>
-        </form>
+        <div>
+          <ProvidersList />
+        </div>
       </AuthLayout>
     </>
   );

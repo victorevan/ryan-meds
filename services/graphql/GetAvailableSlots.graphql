@@ -1,0 +1,6 @@
+query GetAvailableSlots {
+  available_slots {
+    start_time
+    provider_id
+  }
+}

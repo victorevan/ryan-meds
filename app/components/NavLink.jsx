@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const RegularLink = ({ children, ...rest }) => <a {...rest}>{children}</a>
+export const RegularLink = ({ children, ...rest }) => <a {...rest}>{children}</a>
 
 export function NavLink({ isA, href, children }) {
   let Wrapper = isA ? RegularLink : Link;

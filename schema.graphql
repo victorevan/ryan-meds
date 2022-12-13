@@ -1,10 +1,11 @@
 type Query {
   providers: [MedicalProvider!]!
-  available_slots: [Slot!]!
+  available_slots: [SlotWithProvider!]!
   currentTime: Date!
 }
 
 type Mutation {
+  add_availabilities(medical_provider_id: ID!, start_time: Date!, end_time: Date!): MedicalProvider
   book_slot(slot: Date!, medical_patient_id: ID!, medical_provider_id: ID!): MedicalBooking!
   confirm_slot(slot: ID!): MedicalBooking
 }
@@ -17,6 +18,11 @@ type MedicalProvider {
 
 type Slot {
   start_time: Date!
+}
+
+type SlotWithProvider {
+  start_time: Date!
+  provider_id: ID!
 }
 
 type MedicalPatient {

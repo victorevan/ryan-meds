@@ -8,7 +8,12 @@ import { join } from "path";
 import getConfig from "next/config";
 import { GraphQLScalarType } from "graphql";
 
-import { MedicalProvider, Resolvers } from "lib/api/graphql/generated";
+import {
+  MedicalProvider,
+  Resolvers,
+  SlotWithProvider,
+} from "lib/api/graphql/generated";
+import { Slot } from "../../services/graphql/generated";
 
 const dateScalar = new GraphQLScalarType({
   name: "Date",
@@ -30,18 +35,11 @@ const typeDefs = readFileSync(schemaPath, {
   encoding: "utf-8",
 });
 
-const resolvers: Resolvers = {
-  Date: dateScalar,
-  Query: {
-    currentTime: () => Date.now(),
-  },
-};
-
 const generateSlotsFromTimeToTime = (
   startTime: number,
   endTime: number,
   interval: 900
-) => {
+): Slot[] => {
   const slots = [];
   let lastTime = startTime;
 
@@ -61,24 +59,55 @@ const existingProviderMock: MedicalProvider = {
   available_slots: generateSlotsFromTimeToTime(1691938800, 1691964000, 900),
 };
 
-const createRandomProvider = (): MedicalProvider => ({
-  id: faker.datatype.uuid(),
-  name: faker.name.fullName(),
-  available_slots: [
-    {
-      start_time: faker.date.past().getTime(),
-    },
-  ],
-});
+const createRandomProvider = (): MedicalProvider => {
+  const futureStartTime = faker.date.future().getTime();
+  // work for 4 hours
+  const futureEndTime = futureStartTime + 14400;
+
+  return {
+    id: faker.datatype.uuid(),
+    name: faker.name.fullName(),
+    available_slots: generateSlotsFromTimeToTime(
+      futureStartTime,
+      futureEndTime,
+      900
+    ),
+  };
+};
+
+const fakeProviders = [
+  existingProviderMock,
+  createRandomProvider(),
+  createRandomProvider(),
+];
+
+const fakeAvailableSlots = fakeProviders.reduce(
+  (acc: Array<SlotWithProvider>, currProvider) => {
+    const slotsWithProvider = currProvider.available_slots.map((slot) => ({
+      start_time: slot.start_time,
+      provider_id: currProvider.id,
+    }));
+
+    acc.push(...slotsWithProvider);
+    return acc;
+  },
+  []
+);
+
+console.log(fakeAvailableSlots);
+
+const resolvers: Resolvers = {
+  Date: dateScalar,
+  Query: {
+    currentTime: () => Date.now(),
+  },
+};
 
 const mocks = {
   Date: () => faker.date.future().getTime(),
   Query: {
-    providers: () => [
-      existingProviderMock,
-      createRandomProvider(),
-      createRandomProvider(),
-    ],
+    providers: () => fakeProviders,
+    available_slots: () => fakeAvailableSlots,
   },
 };
 

@@ -1,0 +1,8 @@
+mutation AddAvailabilities($medical_provider_id: ID!, $start_time: Date!, $end_time: Date!) {
+    add_availabilities(medical_provider_id: $medical_provider_id, start_time: $start_time, end_time: $end_time) {
+      id
+      available_slots {
+        start_time
+    }
+  }
+}
