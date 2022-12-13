@@ -1,13 +1,5 @@
 "use client";
-import ProvidersList from "@components/MedicalProvidersList";
-import {
-  getYear,
-  getMonth,
-  getDay,
-  lightFormat,
-  nextDay,
-  getUnixTime,
-} from "date-fns";
+import { getDay, lightFormat, nextDay, getUnixTime } from "date-fns";
 import { FormEvent, useState } from "react";
 import { useAddAvailabilitiesMutation } from "services/graphql/AddAvailabilities.generated";
 import { MedicalProvider } from "services/graphql/generated";
