@@ -10,20 +10,13 @@ export function Footer() {
       <Container>
         <div className="py-16">
           <Logo className="mx-auto h-10 w-auto" />
-          <nav className="mt-10 text-sm" aria-label="quick links">
-            <div className="-my-1 flex justify-center gap-x-6">
-              <NavLink isA href="#features">Features</NavLink>
-              <NavLink isA href="#testimonials">Testimonials</NavLink>
-              <NavLink isA href="#pricing">Pricing</NavLink>
-            </div>
-          </nav>
         </div>
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
           <div className="flex gap-x-6">
             <Link
               href="https://twitter.com"
               className="group"
-              aria-label="TaxPal on Twitter"
+              aria-label="Ryan Meds on Twitter"
             >
               <svg
                 aria-hidden="true"
@@ -35,7 +28,7 @@ export function Footer() {
             <Link
               href="https://github.com"
               className="group"
-              aria-label="TaxPal on GitHub"
+              aria-label="Ryan Meds on GitHub"
             >
               <svg
                 aria-hidden="true"
@@ -46,7 +39,7 @@ export function Footer() {
             </Link>
           </div>
           <p className="mt-6 text-sm text-slate-500 sm:mt-0">
-            Copyright &copy; {new Date().getFullYear()} TaxPal. All rights
+            Copyright &copy; {new Date().getFullYear()} Ryan Meds. All rights
             reserved.
           </p>
         </div>

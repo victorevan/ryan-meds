@@ -31,7 +31,7 @@ export function Hero() {
         We give you the best experience possible to get the medicine you need.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/register">Let&apos;s do it</Button>
+        <Button href="/medical-patient">Get started now</Button>
         <Button
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           variant="outline"
