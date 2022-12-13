@@ -8,7 +8,7 @@ interface Props {
   onProviderSelect: Function;
 }
 
-const ProvidersList: React.FunctionComponent<Props> = ({
+const MedicalProvidersList: React.FunctionComponent<Props> = ({
   onProviderSelect,
 }) => {
   const { data, isLoading } = useGetProvidersQuery();
@@ -17,7 +17,7 @@ const ProvidersList: React.FunctionComponent<Props> = ({
     onProviderSelect(providerId);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading Providers...</div>;
 
   return (
     <div>
@@ -63,4 +63,4 @@ const ProvidersList: React.FunctionComponent<Props> = ({
   );
 };
 
-export default ProvidersList;
+export default MedicalProvidersList;

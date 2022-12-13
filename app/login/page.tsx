@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import ProvidersList from "@components/ProvidersList";
+import MedicalProviderFlow from "@components/MedicalProviderFlow";
 
 import { AuthLayout } from "@components/AuthLayout";
 import { Logo } from "@components/Logo";
@@ -23,7 +23,7 @@ export default function Login() {
           </div>
         </div>
         <div>
-          <ProvidersList />
+          <MedicalProviderFlow />
         </div>
       </AuthLayout>
     </>

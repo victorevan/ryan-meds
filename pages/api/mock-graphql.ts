@@ -94,8 +94,6 @@ const fakeAvailableSlots = fakeProviders.reduce(
   []
 );
 
-console.log(fakeAvailableSlots);
-
 const resolvers: Resolvers = {
   Date: dateScalar,
   Query: {
