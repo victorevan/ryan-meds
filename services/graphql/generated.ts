@@ -10,9 +10,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
 };
 
 export type Query = {
   __typename?: 'Query';
+  currentTime?: Maybe<Scalars['Date']>;
   hello?: Maybe<Scalars['String']>;
 };

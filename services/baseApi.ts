@@ -4,7 +4,7 @@ import { graphqlRequestBaseQuery } from "@rtk-query/graphql-request-base-query";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: graphqlRequestBaseQuery({
-    url: "/api/graphql",
+    url: "/api/mock-graphql",
   }),
   /**
    * endpoints are injected here

@@ -1,3 +1,5 @@
 type Query {
-  hello: String
+  currentTime: Date
 }
+
+scalar Date
