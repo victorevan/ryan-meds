@@ -4,8 +4,7 @@ import { faker } from "@faker-js/faker";
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { readFileSync } from "fs";
-import { join } from "path";
-import getConfig from "next/config";
+import { resolve } from "path";
 import { GraphQLScalarType } from "graphql";
 
 import {
@@ -29,8 +28,7 @@ const dateScalar = new GraphQLScalarType({
   },
 });
 
-const { serverRuntimeConfig } = getConfig();
-const schemaPath = join(serverRuntimeConfig.PROJECT_ROOT, "./schema.graphql");
+const schemaPath = resolve("./public", "schema.graphql");
 const typeDefs = readFileSync(schemaPath, {
   encoding: "utf-8",
 });

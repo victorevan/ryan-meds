@@ -1,4 +1,4 @@
-const SCHEMA = "schema.graphql";
+const SCHEMA = "public/schema.graphql";
 
 /** @type {import('graphql-config').IGraphQLConfig } */
 const config = {
