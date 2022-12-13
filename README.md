@@ -9,10 +9,16 @@ For cross-platform development, use [Docker](https://www.docker.com/) to build t
 ```bash
 docker build --tag hire-victor .
 ```
-The application can now be run interactively in the shell and port mapped.
+The application can now be run interactively in the container shell and port mapped.
 
 ```bash
 docker run --name ryan-meds -it -p 3000:3000 hire-victor
+```
+
+In the future, you can simply start the container and attach.
+
+```bash
+docker start -a ryan-meds
 ```
 
 Using a separate shell instance, you can use bash within the container.
