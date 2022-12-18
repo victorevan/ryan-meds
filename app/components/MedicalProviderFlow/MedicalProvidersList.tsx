@@ -4,9 +4,9 @@ import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { useGetProvidersQuery } from "services/graphql/GetProviders.generated";
 import { MedicalProvider } from "services/graphql/generated";
 
-interface Props {
+type Props = {
   onProviderSelect: Function;
-}
+};
 
 const MedicalProvidersList: React.FunctionComponent<Props> = ({
   onProviderSelect,
