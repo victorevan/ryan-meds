@@ -1,16 +1,12 @@
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
-import { api as availableSlotsApi } from "services/graphql/GetAvailableSlots.generated";
-import { api as providersApi } from "services/graphql/GetProviders.generated";
+import { api } from "services/baseApi";
 
 const storeConfig: ConfigureStoreOptions = {
   reducer: {
-    [availableSlotsApi.reducerPath]: availableSlotsApi.reducer,
-    [providersApi.reducerPath]: providersApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(availableSlotsApi.middleware)
-      .concat(providersApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 };
 
 const store = configureStore(storeConfig);
